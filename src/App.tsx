@@ -1,12 +1,13 @@
-import './App.css'
+import "./App.css";
+import NavBar from "./components/NavBar";
 
 function App() {
-
+  const navLinks = ["Home", "Join Group", "Manage Group", "Create Group"];
   return (
-    <div>
-      <h1>Start</h1>
+    <div className="background-orange">
+      <NavBar navLinks={navLinks}></NavBar>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
