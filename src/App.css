@@ -3,5 +3,9 @@
 }
 
 .background-aqua {
-  background-color: aqua;
+  background-color: #F0F8FF;
+}
+
+.half {
+  width: 50%
 }

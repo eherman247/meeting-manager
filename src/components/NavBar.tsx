@@ -6,10 +6,10 @@ interface NavProps {
 
 const NavBar = ({ navLinks }: NavProps) => {
   return (
-    <nav className="navbar navbar-expand-lg bg-body-tertiary mx-3">
+    <nav className="navbar navbar-expand-lg bg-body-tertiary m-3 px-4">
       <div className="container-fluid">
         {navLinks.map((nav) => (
-          <a>{nav}</a>
+          <a className="fs-3 text-decoration-none text-reset">{nav}</a>
         ))}
       </div>
     </nav>
