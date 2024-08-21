@@ -1,4 +1,5 @@
 const express = require('express')
+const Group = require('../models/createGroupModel')
 
 const router = express.Router()
 
@@ -10,8 +11,14 @@ router.get('/:id', (req, res) => {
     res.json({mssg: 'GET a single workout'})
 })
 
-router.post('/', (req, res) => {
-    res.json({mssg: 'POST a new workout'})
+router.post('/', async (req, res) => {
+    const {group_name, user} = req.body
+    try{
+      const group = await Group.create({group_name, user})
+      res.status(200).json(group)
+    }catch (error) {
+      res.status(400).json({error: error.message})
+    }
 })
 
 router.delete('/:id', (req, res) => {
