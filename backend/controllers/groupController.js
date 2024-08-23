@@ -13,7 +13,7 @@ const getGroup = async (req, res) => {
   const {id} = req.params
 
   if(!mongoose.Types.ObjectId.isValid(id)){
-    return res.status(404).json({error: "No such workout"})
+    return res.status(404).json({error: "No such group"})
   }
 
   const group = await Group.findById(id)
@@ -39,11 +39,46 @@ const createGroup = async (req, res) => {
 }
 
 // delete a group 
+const deleteGroup = async (req, res) => {
+  const {id} = req.params
+
+  if(!mongoose.Types.ObjectId.isValid(id)){
+    return res.status(404).json({error: "No such group"})
+  }
+
+  const group = await Group.findOneAndDelete({_id: id})
+  
+  if(!group) {
+    return res.status(400).json({error: "No such group"})
+  }
+
+  res.status(200).json(group)
+}
 
 // update a group
+const updateGroup = async (req, res) => {
+  const {id} = req.params
+
+  if(!mongoose.Types.ObjectId.isValid(id)){
+    return res.status(404).json({error: "No such group"})
+  }
+
+  const group = await Group.findOneAndUpdate({_id: id}, {
+    ...req.body
+  })
+
+  if(!group) {
+    return res.status(400).json({error: "No such group"})
+  }
+
+  res.status(200).json(group)
+}
+
 
 module.exports = {
   getGroup,
   getGroups,  
-  createGroup
+  createGroup,
+  deleteGroup,
+  updateGroup
 }
