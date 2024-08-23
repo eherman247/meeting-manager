@@ -1,17 +1,15 @@
 const express = require('express')
 const {
     createGroup,
+    getGroup,
+    getGroups
 } = require("../controllers/groupController")
 
 const router = express.Router()
 
-router.get('/', (req, res) => {
-    res.json({mssg: 'GET all workouts'})
-})
+router.get('/', getGroups)
 
-router.get('/:id', (req, res) => {
-    res.json({mssg: 'GET a single workout'})
-})
+router.get('/:id', getGroup)
 
 router.post('/', createGroup)
 
