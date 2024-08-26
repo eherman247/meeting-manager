@@ -13,14 +13,22 @@ const Home = () => {
 
   useEffect(() => {
     const fetchGroups = async () => {
-      const response = await fetch('/api/groups/')
-      const json = await response.json()
+      console.log("problem1") 
+      fetch('https://jsonplaceholder.typicode.com/posts/1')
+        .then(response => response.json())
+        .then(json => console.log(json))
+      // const response = await fetch('/api/groups')
+      // const json = await response.json()
+      // console.log("problem2")
 
-      if (response.ok) {
-        setGroups(json)
-      }
+      // if (response.ok) {
+      //   setGroups(json)
+      // }
+      // else{
+      //   console.log("problem")
+      // }
     }
-
+    
     fetchGroups()
   }, [])
 
