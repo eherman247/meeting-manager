@@ -3,20 +3,26 @@ import MainPageBody from "../components/MainPageBody";
 
 const Home = () => {
   // const navLinks = ["/", "/joinGroup", "/manageGroup", "/createGroup"];
-  const [groups, setGroups] = useState([{
-    _id: '',
-    user: {
-      firstName: '',
-      lastName: ''
-    }
-  }])
+  const [groups, setGroups] = useState([
+    {
+      _id: "",
+      user: {
+        firstName: "",
+        lastName: "",
+      },
+      group_name: "",
+      createdAt: "",
+      updatedAt: "",
+      __v: Number,
+    },
+  ]);
 
   useEffect(() => {
     const fetchGroups = async () => {
-      console.log("problem1") 
-      fetch('https://jsonplaceholder.typicode.com/posts/1')
-        .then(response => response.json())
-        .then(json => console.log(json))
+      console.log("problem1");
+      fetch("http://localhost:4000/api/groups")
+        .then((response) => response.json())
+        .then((json) => setGroups(json));
       // const response = await fetch('/api/groups')
       // const json = await response.json()
       // console.log("problem2")
@@ -27,21 +33,23 @@ const Home = () => {
       // else{
       //   console.log("problem")
       // }
-    }
-    
-    fetchGroups()
-  }, [])
+    };
+
+    fetchGroups();
+  }, []);
 
   return (
     <div className="p-2 ">
       <MainPageBody></MainPageBody>
       <div>
-        {groups && groups.map((group) => (
-          <p key={group._id}>{group.user.firstName} {group.user.lastName}</p>
-        ))}
+        {groups &&
+          groups.map((group) => (
+            <p key={group._id}>
+              {group.user.firstName} {group.user.lastName}
+            </p>
+          ))}
       </div>
     </div>
-
   );
 };
 
