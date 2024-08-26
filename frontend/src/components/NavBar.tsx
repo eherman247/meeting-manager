@@ -14,7 +14,7 @@ const NavBar = ({ navLinks }: NavProps) => {
     <nav className="navbar navbar-expand-lg bg-body-tertiary m-3 px-4">
       <div className="container-fluid">
         {navLinks.map((nav) => (
-          <Link to={nav["link"]}>
+          <Link to={nav["link"]} key={nav["link"]}>
             <button
               className="fs-3 text-decoration-none text-reset"
               key={nav["name"]}
