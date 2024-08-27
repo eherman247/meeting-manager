@@ -1,25 +1,25 @@
 import { useEffect, useState } from "react";
 import MainPageBody from "../components/MainPageBody";
+import GroupDetails from "../components/GroupDetails";
+
+interface groupStruct {
+  _id: string;
+  user: {
+    firstName: string;
+    lastName: string;
+  };
+  group_name: string;
+  createdAt: string;
+  updatedAt: string;
+  __v: Number;
+}
 
 const Home = () => {
   // const navLinks = ["/", "/joinGroup", "/manageGroup", "/createGroup"];
-  const [groups, setGroups] = useState([
-    {
-      _id: "",
-      user: {
-        firstName: "",
-        lastName: "",
-      },
-      group_name: "",
-      createdAt: "",
-      updatedAt: "",
-      __v: Number,
-    },
-  ]);
+  const [groups, setGroups] = useState<groupStruct[]>();
 
   useEffect(() => {
     const fetchGroups = async () => {
-      console.log("problem1");
       fetch("http://localhost:4000/api/groups")
         .then((response) => response.json())
         .then((json) => setGroups(json));
@@ -44,9 +44,10 @@ const Home = () => {
       <div>
         {groups &&
           groups.map((group) => (
-            <p key={group._id}>
-              {group.user.firstName} {group.user.lastName}
-            </p>
+            // <p key={group._id}>
+            //   {group.user.firstName} {group.user.lastName}
+            // </p>
+            <GroupDetails key={group._id} group={group}></GroupDetails>
           ))}
       </div>
     </div>
